@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+
+  div {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #1F2937;
+      font-size: 0.875rem;
+    }
+
+    input {
+      width: calc(100% - 1.5rem);
+      padding: 0.75rem;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #1F2937;
+      background-color: #F9FAFB;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #2563EB;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      &[readonly] {
+        background-color: #E5E7EB;
+        cursor: not-allowed;
+      }
+    }
+
+    div {
+      color: #DC2626;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2563EB;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #1E40AF;
+    }
+
+    &:disabled {
+      background-color: #9CA3AF;
+      cursor: not-allowed;
+    }
+  }
+}

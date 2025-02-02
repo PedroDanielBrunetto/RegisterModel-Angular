@@ -1,1 +1,58 @@
-<p>cadastro works!</p>
+<form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nome">Nome:</label>
+    <input id="nome" formControlName="nome" placeholder="Nome completo" />
+    <div *ngIf="errors['nome']">{{ errors["nome"] }}</div>
+  </div>
+
+  <div>
+    <label for="cpf">CPF:</label>
+    <input id="cpf" formControlName="cpf" placeholder="000.000.000-00" />
+    <div *ngIf="errors['cpf']">{{ errors["cpf"] }}</div>
+  </div>
+
+  <div>
+    <label for="dataNascimento">Data de Nascimento:</label>
+    <input id="dataNascimento" type="date" formControlName="dataNascimento" />
+    <div *ngIf="errors['dataNascimento']">{{ errors["dataNascimento"] }}</div>
+  </div>
+
+  <div>
+    <label for="email">E-mail:</label>
+    <input id="email" formControlName="email" placeholder="nome@dominio.com" />
+    <div *ngIf="errors['email']">{{ errors["email"] }}</div>
+  </div>
+
+  <div>
+    <label for="cep">CEP:</label>
+    <input
+      id="cep"
+      formControlName="cep"
+      placeholder="00000-000"
+      (blur)="buscarEndereco()"
+    />
+    <div *ngIf="errors['cep']">{{ errors["cep"] }}</div>
+  </div>
+
+  <div>
+    <label for="logradouro">Logradouro:</label>
+    <input id="logradouro" formControlName="logradouro" readonly />
+  </div>
+
+  <div>
+    <label for="bairro">Bairro:</label>
+    <input id="bairro" formControlName="bairro" readonly />
+  </div>
+
+  <div>
+    <label for="cidade">Cidade:</label>
+    <input id="cidade" formControlName="cidade" readonly />
+  </div>
+
+  <div>
+    <label for="estado">Estado:</label>
+    <input id="estado" formControlName="estado" readonly />
+  </div>
+
+  <button type="submit">Cadastrar</button>
+</form>
