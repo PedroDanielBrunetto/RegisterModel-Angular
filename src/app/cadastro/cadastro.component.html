@@ -1,3 +1,7 @@
+<h3 class="title-test">
+  Pedro Daniel Brunetto Martinez - Teste Técnico – Desenvolvimento FrontEnd
+</h3>
+
 <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="nome">Nome:</label>
@@ -61,6 +65,10 @@
   </div>
 
   <button type="submit">Cadastrar</button>
+
+  <div *ngIf="sucesso" class="sucesso">
+    {{ sucesso }}
+  </div>
 </form>
 
 <div id="tabela">

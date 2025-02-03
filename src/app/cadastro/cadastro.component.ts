@@ -11,6 +11,7 @@ import axios from 'axios';
 export class CadastroComponent {
   cadastroForm: FormGroup;
   errors: { [key: string]: string } = {};
+  sucesso: string = '';
   cadastros: any[] = [];
 
   constructor(private fb: FormBuilder) {
@@ -70,13 +71,19 @@ export class CadastroComponent {
       };
       this.salvarCadastro(cadastro);
       this.cadastroForm.reset();
+      this.sucesso = 'Cadastro realizado com sucesso!';
     } else {
       this.errors = {};
       result.error.errors.forEach((err) => {
         const field = err.path[0];
         this.errors[field] = err.message;
       });
+      this.sucesso = '';
     }
+
+    setTimeout(() => {
+      this.sucesso = '';
+    }, 2000);
   }
 
   buscarEndereco() {
