@@ -7,7 +7,12 @@
 
   <div>
     <label for="cpf">CPF:</label>
-    <input id="cpf" formControlName="cpf" placeholder="000.000.000-00" />
+    <input
+      id="cpf"
+      formControlName="cpf"
+      placeholder="000.000.000-00"
+      (input)="maskCpf($event)"
+    />
     <div *ngIf="errors['cpf']">{{ errors["cpf"] }}</div>
   </div>
 
@@ -29,6 +34,7 @@
       id="cep"
       formControlName="cep"
       placeholder="00000-000"
+      (input)="maskCep($event)"
       (blur)="buscarEndereco()"
     />
     <div *ngIf="errors['cep']">{{ errors["cep"] }}</div>
