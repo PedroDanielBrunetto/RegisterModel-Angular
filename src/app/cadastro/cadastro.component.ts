@@ -11,6 +11,7 @@ import axios from 'axios';
 export class CadastroComponent {
   cadastroForm: FormGroup;
   errors: { [key: string]: string } = {};
+  cadastros: any[] = [];
 
   constructor(private fb: FormBuilder) {
     this.cadastroForm = this.fb.group({
@@ -24,6 +25,37 @@ export class CadastroComponent {
       cidade: [''],
       estado: [''],
     });
+    this.carregarCadastros();
+  }
+
+  carregarCadastros() {
+    const cadastrosSalvos = localStorage.getItem('cadastros');
+    if (cadastrosSalvos) {
+      this.cadastros = JSON.parse(cadastrosSalvos);
+    } else {
+      this.cadastros = [];
+    }
+  }
+
+  salvarCadastro(cadastro: any) {
+    this.cadastros.push(cadastro);
+    localStorage.setItem('cadastros', JSON.stringify(this.cadastros));
+  }
+
+  excluirCadastro(index: number) {
+    this.cadastros.splice(index, 1);
+    localStorage.setItem('cadastros', JSON.stringify(this.cadastros));
+  }
+
+  calcularIdade(dataNascimento: string): number {
+    const nascimento = new Date(dataNascimento);
+    const hoje = new Date();
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const mes = hoje.getMonth() - nascimento.getMonth();
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+      idade--;
+    }
+    return idade;
   }
 
   onSubmit() {
@@ -32,6 +64,12 @@ export class CadastroComponent {
 
     if (result.success) {
       this.errors = {};
+      const cadastro = {
+        ...formValue,
+        idade: this.calcularIdade(formValue.dataNascimento),
+      };
+      this.salvarCadastro(cadastro);
+      this.cadastroForm.reset();
     } else {
       this.errors = {};
       result.error.errors.forEach((err) => {

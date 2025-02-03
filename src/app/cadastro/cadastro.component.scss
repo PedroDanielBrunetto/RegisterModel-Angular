@@ -72,3 +72,39 @@ form {
     }
   }
 }
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: darkred;
+}
+
+#tabela {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
