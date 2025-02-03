@@ -72,6 +72,9 @@ export class CadastroComponent {
       this.salvarCadastro(cadastro);
       this.cadastroForm.reset();
       this.sucesso = 'Cadastro realizado com sucesso!';
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     } else {
       this.errors = {};
       result.error.errors.forEach((err) => {
