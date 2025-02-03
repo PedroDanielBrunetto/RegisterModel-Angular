@@ -31,7 +31,6 @@ export class CadastroComponent {
     const result = schema.safeParse(formValue);
 
     if (result.success) {
-      console.log('Dados válidos:', result.data);
       this.errors = {};
     } else {
       this.errors = {};
@@ -39,7 +38,6 @@ export class CadastroComponent {
         const field = err.path[0];
         this.errors[field] = err.message;
       });
-      console.log('Erros de validação:', this.errors);
     }
   }
 
@@ -50,15 +48,20 @@ export class CadastroComponent {
         .get(`https://viacep.com.br/ws/${cep}/json/`)
         .then((response) => {
           const data = response.data;
-          this.cadastroForm.patchValue({
-            logradouro: data.logradouro,
-            bairro: data.bairro,
-            cidade: data.localidade,
-            estado: data.uf,
-          });
+          if (data.erro) {
+            this.errors['cep'] = 'CEP inválido';
+          } else {
+            this.cadastroForm.patchValue({
+              logradouro: data.logradouro,
+              bairro: data.bairro,
+              cidade: data.localidade,
+              estado: data.uf,
+            });
+            this.errors['cep'] = '';
+          }
         })
         .catch((error) => {
-          console.error('Erro ao buscar CEP:', error);
+          console.error(error);
         });
     }
   }
